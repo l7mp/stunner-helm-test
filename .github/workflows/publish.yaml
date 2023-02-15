@@ -110,6 +110,7 @@ jobs:
           # git push origin new
           npm i
           npm install -g gh-pages --save-dev
+          npm run build
           CI='' gh-pages -d build -m 'Update' -f -u 'BotL7mp <l7mp.info@gmail.com>'
 
       - name: Update stunner-helm repo
