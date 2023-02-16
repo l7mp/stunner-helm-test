@@ -108,10 +108,13 @@ jobs:
             git commit -m "Release helm chart from l7mp/${{ env.TYPE }}" -m "(triggered by the 'Helm release' github action.)"
           fi
           # git push origin new
+          
+          # npm install -g gh-pages --save-dev
+          # CI='' npm run build
+          # gh-pages -d build -m 'Update' -f -u 'BotL7mp <l7mp.info@gmail.com>'
           npm i
-          npm install -g gh-pages --save-dev
-          CI='' npm run build
-          gh-pages -d build -m 'Update' -f -u 'BotL7mp <l7mp.info@gmail.com>'
+          git remote set-url origin https://BotL7mp:${{ secrets.WEB_PAT_TOKEN }}@github.com/l7mp/l7mp.io.git
+          CI='' npm run deploy
 
       - name: Update stunner-helm repo
         if: ${{ env.TAG != 'dev' }}
